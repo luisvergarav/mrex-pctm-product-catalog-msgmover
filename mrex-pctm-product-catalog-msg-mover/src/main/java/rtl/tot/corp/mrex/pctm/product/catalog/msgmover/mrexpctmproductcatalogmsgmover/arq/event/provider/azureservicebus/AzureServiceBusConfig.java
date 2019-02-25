@@ -20,7 +20,7 @@ public class AzureServiceBusConfig {
         return new TopicClientConfig();
     }
 
-    @Lazy
+    //@Lazy
     @Bean
     @ConditionalOnProperty(prefix = "subscriber", name = "azure-service-bus.topic")
     public EventSubscriber asbSubscriber() throws ServiceBusException, InterruptedException {
