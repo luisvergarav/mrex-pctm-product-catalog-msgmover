@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'rtl.tot.corp.mrex.pctm.product.catalog.msgmover	'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+
+
+repositories {
+	mavenCentral()
+	 maven {
+        url project.property("repository.releases.url")
+        credentials {
+            username project.property("repository.username")
+            password project.property("repository.password")
+        }
+    }
+}
+
+
+ext {
+	set('azureVersion', '2.0.8')
+	    eventAdapterASBVersion = '0.0.1'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly("org.projectlombok:lombok:1.16.10")
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'com.microsoft.azure:azure-spring-boot-starter'
+	compile group: 'com.microsoft.azure', name: 'azure-servicebus-spring-boot-starter', version: '2.1.0'
+	
+	
+}
