@@ -23,12 +23,12 @@ public class ASBToCosmosDBEventHandler implements EventHandler {
 	public void processEvent(Event event) {
 
 		try {
-			if (publisher.publish("Evento json Aqui")) {
+			if (publisher.publish(event)) {
 				log.info("[" + event.getEntityType() + " (" + event.getEntityId() + ")]: " + event.getEventType());
+				log.info("Published Product Created" + event.toString());
 			} else {
 				log.error("Unable to send Event: " + event);
-			}
-			log.info("Published Product Created" + event.getMetadata());
+			}			
 
 		} catch (Exception e) {
 			log.error("Error publishing Event" + event.getMetadata());
